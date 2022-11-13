@@ -589,7 +589,9 @@ Citizen.CreateThread(function()
                     sleep = 0
                     ESX.DrawText3D(dataX.BossActionLocation.x, dataX.BossActionLocation.y, dataX.BossActionLocation.z, '[~b~E~w~] Boss Action - '..dataX.JobLabel)
                     if IsControlJustReleased(0, 38) then
-                        TriggerEvent('esx_society:openBossMenu', dataX.Job)
+                        TriggerEvent('esx_society:openBossMenu', dataX.Job, function(data, menu)
+                            menu.close()
+                        end, {wash = false}) -- Disabling Money Wash
                     end
                 elseif distX <= 10.0 and isBoss then
                     sleep = 0
